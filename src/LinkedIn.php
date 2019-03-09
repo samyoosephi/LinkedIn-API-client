@@ -142,16 +142,8 @@ class LinkedIn implements LinkedInInterface
      */
     protected function filterRequestOption(array &$options)
     {
-        if (isset($options['json'])) {
-            $options['format'] = 'json';
-            $options['body'] = json_encode($options['json']);
-        } elseif (!isset($options['format'])) {
-            // Make sure we always have a format
-            $options['format'] = $this->getFormat();
-        }
-
         // Set correct headers for this format
-        switch ($options['format']) {
+        switch ($this->format) {
             case 'xml':
                 $options['headers']['Content-Type'] = 'text/xml';
                 break;
@@ -164,7 +156,7 @@ class LinkedIn implements LinkedInInterface
                 // Do nothing
         }
 
-        return $options['format'];
+        return $this->format;
     }
 
     /**
