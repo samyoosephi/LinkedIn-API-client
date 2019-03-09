@@ -150,7 +150,6 @@ class LinkedIn implements LinkedInInterface
             case 'json':
                 $options['headers']['Content-Type'] = 'application/json';
                 $options['headers']['x-li-format'] = 'json';
-                $options['query']['format'] = 'json';
                 break;
             default:
                 // Do nothing
